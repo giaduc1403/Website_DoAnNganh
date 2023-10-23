@@ -1,0 +1,106 @@
+﻿@model WebsiteBeverageDemo.Models.EmailModel
+@{
+    ViewData["Title"] = "Thông tin liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+<section class="breadcrumb-section set-bg" data-setbg="../Assets/img/bd-home.jpg" style="background-image: url(&quot;img/breadcrumb.jpg&quot;);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Beverage</h2>
+                        <div class="breadcrumb__option">
+                            <a href="#">Home</a>
+                            <span>Shop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Begin Main Content Area -->
+<main class="main-content">
+   
+    <!-- Begin Shipping Area -->
+    <div class="shipping-area section-space-y-axis-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="shipping-item">
+                        <div class="shipping-img">
+                            <img src="../Assets/img/blog/ship.jpg" alt="Shipping Icon">
+                        </div>
+                        <div class="shipping-content">
+                            <h5 class="title">Free Shipping</h5>
+                            <p class="short-desc mb-0">Free Home Delivery Offer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pt-6 pt-md-0">
+                    <div class="shipping-item">
+                        <div class="shipping-img">
+                            <img src="../Assets/img/blog/support-online.png" alt="Shipping Icon">
+                        </div>
+                        <div class="shipping-content">
+                            <h5 class="title">Online Support</h5>
+                            <p class="short-desc mb-0">24/7 Online Support Provide</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pt-6 pt-lg-0">
+                    <div class="shipping-item">
+                        <div class="shipping-img">
+                            <img src="../Assets/img/blog/paypal.jpg" alt="Shipping Icon">
+                        </div>
+                        <div class="shipping-content">
+                            <h5 class="title">Secure Payment</h5>
+                            <p class="short-desc mb-0">Fully Secure Payment System</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shipping Area End Here -->
+
+    <div class="contact-with-map">
+        <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.4900817225616!2d105.87392577493452!3d21.21240628048333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135040aa3bd105d%3A0xff7b630bd4078a84!2zQ8OieSB4xINuZyB04buxIMSR4buZbmc!5e0!3m2!1svi!2s!4v1684312812698!5m2!1svi!2s" width="1500" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        @using (Html.BeginForm("SendMail", "Home", FormMethod.Post, new { enctype = "multipart/formd-data" }))
+        {
+        <div class="contact-form-area section-space-bottom-100">
+            <div class="container">
+                <div class="contact-form-wrap">
+                    <form id="contact-form" class="contact-form" action="https://whizthemes.com/mail-php/mamunur/harmic/harmic.php">
+                        <h4 class="contact-form-title pb-2 mb-7">Vấn đề</h4>
+                        <div class="form-field">
+@*                            <input type="text" name="con_name" placeholder="Name*" class="input-field">*@
+                            @Html.TextBoxFor(Model => Model.Subject)
+                        </div>
+                        <div class="form-field mt-6"> Email của bạn:
+                            @Html.TextBoxFor(Model => Model.Email)
+                        </div><div class="form-field mt-6">Mật khẩu của bạn
+                            @Html.TextBoxFor(Model => Model.Password, new {type ="password"})
+                        </div>
+                        <div class="form-field mt-6"> Mô tả vấn đề:
+                            @Html.TextBoxFor(Model => Model.Body, new {row = "3", cols = "20"})
+                        </div>
+                        <div class="form-field mt-6">
+                            Ảnh vấn đề:                                                   
+                            @Html.TextBoxFor(Model => Model.Attachment, new{type = "file"})
+
+                        </div>
+                        <div class="button-wrap mt-8">
+                            <button type="submit" value="submit" class="btn btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0" name="submit">Send</button>
+                        </div>
+                        <p class="form-messege mt-3 mb-0"></p>
+                        <span style="color:green">@ViewBag.Message</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</main>
+<!-- Main Content Area End Here -->
